@@ -1,0 +1,27 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Django on Laravel Cloud</title>
+  <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+  <main>
+    <h1>Django on Laravel Cloud</h1>
+    <p class="hint">If this box is green, static files are being served.</p>
+    <ul>
+      <li>Python: {{ python }}</li>
+      <li>Django: {{ django }}</li>
+      <li>DATABASE_URL set: {{ has_database_url|yesno:"yes,no" }}</li>
+      <li>Database engine: {{ db.engine }}</li>
+      {% if db.ok %}
+        <li>Database: working ({{ db.visits }} visits recorded)</li>
+      {% else %}
+        <li class="error">Database error: {{ db.error }}</li>
+      {% endif %}
+    </ul>
+    <p><a href="/health/">/health/</a> &middot; <a href="/admin/">/admin/</a></p>
+  </main>
+</body>
+</html>
